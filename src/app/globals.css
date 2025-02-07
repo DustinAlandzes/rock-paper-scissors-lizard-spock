@@ -40,3 +40,11 @@ a {
     color-scheme: dark;
   }
 }
+
+.player1, .player2, .winner {
+  font-size: 5em;
+}
+
+.title, .button {
+  text-align: center;
+}
