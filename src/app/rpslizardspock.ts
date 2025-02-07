@@ -37,7 +37,7 @@ const choice_mapping: ChoiceMap = {
         [Choice.Paper]: true,
         [Choice.Scissors]: null,
         [Choice.Lizard]: true,
-        [Choice.Spock]: true
+        [Choice.Spock]: false
     },
     [Choice.Lizard]: {
         [Choice.Rock]: false,
@@ -74,118 +74,13 @@ const choice_mapping: ChoiceMap = {
  * @param player1
  * @param player2
  */
-export function winner(player1: Choice, player2: Choice): string {
-    let winner: Player | null = null
-
-    // const player_1_wins = choice_mapping[player1][player2]
-
-
-    if (player1 === Choice.Rock) {
-        switch (player2) {
-            case Choice.Rock:
-                winner = null;
-                break;
-            case Choice.Paper:
-                winner = Player.Player2;
-                break;
-            case Choice.Scissors:
-                winner = Player.Player1;
-                break;
-            case Choice.Lizard:
-                winner = Player.Player1;
-                break;
-            case Choice.Spock:
-                winner = Player.Player2;
-                break;
-            default:
-                throw Error(`Unknown choice: ${player2}`);
-        }
-    } else if (player1 === Choice.Paper) {
-        switch (player2) {
-            case Choice.Rock:
-                winner = Player.Player1;
-                break;
-            case Choice.Paper:
-                winner = null;
-                break;
-            case Choice.Scissors:
-                winner = Player.Player2;
-                break;
-            case Choice.Lizard:
-                winner = Player.Player2;
-                break;
-            case Choice.Spock:
-                winner = Player.Player1;
-                break;
-            default:
-                throw Error(`Unknown choice: ${player2}`);
-        }
-    } else if (player1 === Choice.Scissors) {
-        switch (player2) {
-            case Choice.Rock:
-                winner = Player.Player2;
-                break;
-            case Choice.Paper:
-                winner = Player.Player1;
-                break;
-            case Choice.Scissors:
-                winner = null;
-                break;
-            case Choice.Lizard:
-                winner = Player.Player1;
-                break;
-            case Choice.Spock:
-                winner = Player.Player2;
-                break;
-            default:
-                throw Error(`Unknown choice: ${player2}`);
-        }
-    } else if (player1 === Choice.Lizard) {
-        switch (player2) {
-            case Choice.Rock:
-                winner = Player.Player2;
-                break;
-            case Choice.Paper:
-                winner = Player.Player1;
-                break;
-            case Choice.Scissors:
-                winner = Player.Player2;
-                break;
-            case Choice.Lizard:
-                winner = null;
-                break;
-            case Choice.Spock:
-                winner = Player.Player1;
-                break;
-            default:
-                throw Error(`Unknown choice: ${player2}`);
-        }
-    } else if (player1 === Choice.Spock) {
-        switch (player2) {
-            case Choice.Rock:
-                winner = Player.Player1;
-                break;
-            case Choice.Paper:
-                winner = Player.Player2;
-                break;
-            case Choice.Scissors:
-                winner = Player.Player1;
-                break;
-            case Choice.Lizard:
-                winner = Player.Player2;
-                break;
-            case Choice.Spock:
-                winner = null;
-                break;
-            default:
-                throw Error(`Unknown choice: ${player2}`);
-        }
+export function winner(player1: Choice, player2: Choice): Player | null {
+    const did_player_1_win = choice_mapping[player1][player2];
+    if (did_player_1_win === true) {
+        return Player.Player1
+    } else if (did_player_1_win === false) {
+        return Player.Player2
     } else {
-        throw Error(`Unknown choice: ${player1}`);
+        return null;
     }
-
-    if (winner === null) {
-        return "It's a tie"
-    }
-    return `Player ${winner} Wins!`
 }

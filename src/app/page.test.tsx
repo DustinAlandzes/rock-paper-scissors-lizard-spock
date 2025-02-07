@@ -1,7 +1,6 @@
 #!/bin/node
 import {randomChoice} from './page'
-import {afterEach, beforeEach, describe, test} from "node:test";
-import {expect, jest, describe, test} from "@jest/globals";
+import {expect, jest, describe, test, afterEach, beforeEach} from "@jest/globals";
 import {Choice, winner} from "@/app/rpslizardspock";
 
 // Sets the value of Math.random() to a value that will output rock
