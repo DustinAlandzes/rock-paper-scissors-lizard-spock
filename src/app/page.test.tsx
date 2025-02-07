@@ -1,7 +1,7 @@
 #!/bin/node
-import {randomChoice} from './page'
 import {expect, jest, describe, test, afterEach, beforeEach} from "@jest/globals";
-import {Choice, winner} from "@/app/rpslizardspock";
+import {Choice, Player, winner} from "@/app/rpslizardspock";
+import {randomChoice} from "@/utils";
 
 // Sets the value of Math.random() to a value that will output rock
 beforeEach(() => {
@@ -38,42 +38,42 @@ describe("randomChoice", () => {
 
 describe("winner", () =>{
     test("player1 is the winner for the correct combinations based on the rules", () => {
-        expect(winner(Choice.Paper, Choice.Rock)).toEqual("Player 1 Wins!");
-        expect(winner(Choice.Rock, Choice.Scissors)).toEqual("Player 1 Wins!");
-        expect(winner(Choice.Scissors, Choice.Paper)).toEqual("Player 1 Wins!");
+        expect(winner(Choice.Paper, Choice.Rock)).toEqual(Player.Player1);
+        expect(winner(Choice.Rock, Choice.Scissors)).toEqual(Player.Player1);
+        expect(winner(Choice.Scissors, Choice.Paper)).toEqual(Player.Player1);
 
-        expect(winner(Choice.Rock, Choice.Lizard)).toEqual("Player 1 Wins!");
-        expect(winner(Choice.Rock, Choice.Scissors)).toEqual("Player 1 Wins!");
-        expect(winner(Choice.Spock, Choice.Rock)).toEqual("Player 1 Wins!");
-        expect(winner(Choice.Paper, Choice.Spock)).toEqual("Player 1 Wins!");
-        expect(winner(Choice.Scissors, Choice.Lizard)).toEqual("Player 1 Wins!");
-        expect(winner(Choice.Spock, Choice.Scissors)).toEqual("Player 1 Wins!");
-        expect(winner(Choice.Lizard, Choice.Paper)).toEqual("Player 1 Wins!");
-        expect(winner(Choice.Lizard, Choice.Spock)).toEqual("Player 1 Wins!");
+        expect(winner(Choice.Rock, Choice.Lizard)).toEqual(Player.Player1);
+        expect(winner(Choice.Rock, Choice.Scissors)).toEqual(Player.Player1);
+        expect(winner(Choice.Spock, Choice.Rock)).toEqual(Player.Player1);
+        expect(winner(Choice.Paper, Choice.Spock)).toEqual(Player.Player1);
+        expect(winner(Choice.Scissors, Choice.Lizard)).toEqual(Player.Player1);
+        expect(winner(Choice.Spock, Choice.Scissors)).toEqual(Player.Player1);
+        expect(winner(Choice.Lizard, Choice.Paper)).toEqual(Player.Player1);
+        expect(winner(Choice.Lizard, Choice.Spock)).toEqual(Player.Player1);
 
     });
 
     test("When both arguments are the same value 'It's a tie' is returned", () => {
-        expect(winner(Choice.Paper, Choice.Paper)).toEqual("It's a tie");
-        expect(winner(Choice.Scissors, Choice.Scissors)).toEqual("It's a tie");
-        expect(winner(Choice.Rock, Choice.Rock)).toEqual("It's a tie");
+        expect(winner(Choice.Paper, Choice.Paper)).toEqual(null);
+        expect(winner(Choice.Scissors, Choice.Scissors)).toEqual(null);
+        expect(winner(Choice.Rock, Choice.Rock)).toEqual(null);
 
-        expect(winner(Choice.Lizard, Choice.Lizard)).toEqual("It's a tie");
-        expect(winner(Choice.Spock, Choice.Spock)).toEqual("It's a tie");
+        expect(winner(Choice.Lizard, Choice.Lizard)).toEqual(null);
+        expect(winner(Choice.Spock, Choice.Spock)).toEqual(null);
     });
 
     test("player2 is the winner for the correct combinations based on the rules", () => {
-        expect(winner(Choice.Scissors, Choice.Rock)).toEqual("Player 2 Wins!");
-        expect(winner(Choice.Paper, Choice.Scissors)).toEqual("Player 2 Wins!");
-        expect(winner(Choice.Rock, Choice.Paper)).toEqual("Player 2 Wins!");
+        expect(winner(Choice.Scissors, Choice.Rock)).toEqual(Player.Player2);
+        expect(winner(Choice.Paper, Choice.Scissors)).toEqual(Player.Player2);
+        expect(winner(Choice.Rock, Choice.Paper)).toEqual(Player.Player2);
 
-        expect(winner(Choice.Lizard, Choice.Rock)).toEqual("Player 2 Wins!");
-        expect(winner(Choice.Scissors, Choice.Rock)).toEqual("Player 2 Wins!");
-        expect(winner(Choice.Rock, Choice.Spock)).toEqual("Player 2 Wins!");
-        expect(winner(Choice.Spock, Choice.Paper)).toEqual("Player 2 Wins!");
-        expect(winner(Choice.Lizard, Choice.Scissors)).toEqual("Player 2 Wins!");
-        expect(winner(Choice.Scissors, Choice.Spock)).toEqual("Player 2 Wins!");
-        expect(winner(Choice.Paper, Choice.Lizard)).toEqual("Player 2 Wins!");
-        expect(winner(Choice.Spock, Choice.Lizard)).toEqual("Player 2 Wins!");
+        expect(winner(Choice.Lizard, Choice.Rock)).toEqual(Player.Player2);
+        expect(winner(Choice.Scissors, Choice.Rock)).toEqual(Player.Player2);
+        expect(winner(Choice.Rock, Choice.Spock)).toEqual(Player.Player2);
+        expect(winner(Choice.Spock, Choice.Paper)).toEqual(Player.Player2);
+        expect(winner(Choice.Lizard, Choice.Scissors)).toEqual(Player.Player2);
+        expect(winner(Choice.Scissors, Choice.Spock)).toEqual(Player.Player2);
+        expect(winner(Choice.Paper, Choice.Lizard)).toEqual(Player.Player2);
+        expect(winner(Choice.Spock, Choice.Lizard)).toEqual(Player.Player2);
     });
 })
