@@ -48,3 +48,14 @@ a {
 .title, .button {
   text-align: center;
 }
+
+#new-round-button {
+  padding: 1em 1em;
+  font-size: 1.5em;
+  background-color: white;
+  border-radius: 4px;
+}
+
+#new-round-button:hover {
+  background-color: snow;
+}
