@@ -68,7 +68,7 @@ export default function Home() {
     <div className={styles.page}>
       <h1 className={"title"}>{"Rock Paper Scissors"}</h1>
 
-      <div className={"button"}><button onClick={() => play()}>New round</button></div>
+      <div className={"button"}><button id="new-round-button" onClick={() => play()}>New round</button></div>
 
       <span className={"player1"}>{player1 && `Player 1: ${choice_to_emoji[player1]}`}</span>
       <span className={"player2"}>{player2 && `Player 2: ${choice_to_emoji[player2]}`}</span>
