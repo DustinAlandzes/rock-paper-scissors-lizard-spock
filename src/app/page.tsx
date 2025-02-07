@@ -3,19 +3,7 @@
 import styles from "./page.module.css";
 import {Choice, choices, Player, winner} from "@/app/rpslizardspock";
 import {useState} from "react";
-
-export function randomChoice(choices: Choice[] = [Choice.Rock, Choice.Paper, Choice.Scissors]) {
-  const randomIndex = Math.floor(Math.random() * choices.length)
-  return choices[randomIndex]
-}
-
-const choice_to_emoji = {
-  [Choice.Rock]: "🪨",
-  [Choice.Paper]: "🧻",
-  [Choice.Scissors]: "✂️",
-  [Choice.Lizard]: "🦎",
-  [Choice.Spock]: "🖖",
-}
+import {randomChoice} from "@/utils";
 
 export default function Home() {
 
@@ -25,6 +13,14 @@ export default function Home() {
   const [winningPlayer, setWinner] = useState<Player | null>(null);
   const [player1Score, setPlayer1Score] = useState<number>(0);
   const [player2Score, setPlayer2Score] = useState<number>(0);
+
+  const choice_to_emoji = {
+    [Choice.Rock]: "🪨",
+    [Choice.Paper]: "🧻",
+    [Choice.Scissors]: "✂️",
+    [Choice.Lizard]: "🦎",
+    [Choice.Spock]: "🖖",
+  }
 
   function play() {
     const player1_choice = randomChoice(choices)
